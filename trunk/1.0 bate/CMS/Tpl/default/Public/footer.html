@@ -1,0 +1,38 @@
+﻿<!-- 公共页脚 --><style type="text/css">
+<!--
+a:link {
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+a:active {
+	text-decoration: none;
+}
+-->
+</style>
+<div>
+<div id="foot">
+	<div>
+		<div class="table">
+			<div align="right"><volist name="pages" id="vo">
+				&nbsp;<a href="{:url('index/Id/'.$vo->pagesId,'Pages')}">{$vo.pcnname}</a>&nbsp;|
+        </volist>&nbsp;<a href="http://www.miibeian.gov.cn" target="_blank" title="中华人民共和国信息产业部信息备案号：{&SITE_ICP}">{&SITE_ICP}</a> </div>		
+		    <div title="{&SITE_TITLE}  版权所有 © 2007-2008 Jease All Rights Reserved" align="right"> Copyright&nbsp;&copy; 2007-2008 {&SITE_TITLE}
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<script type="text/javascript">
+function kill_errors()
+{
+	return true;
+}
+window.onerror = kill_errors;
+</script>
+</body>
+</html>
