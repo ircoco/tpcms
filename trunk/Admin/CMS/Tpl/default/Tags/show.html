@@ -1,0 +1,56 @@
+<include file="../Public/header" />
+<div align="center">
+<div id="top">
+	<table cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+		<td width="10px"><img src="../Public/images/topnav_left.jpg" border="0"></td>
+		<td style="background:url(../Public/images/topnav_bg.jpg) repeat-x" align="left">
+			&#8251;&nbsp;
+			<a href="__APP__">{&SITE_TITLE}</a>
+			&raquo;
+			<a href="__APP__">网站首页</a>
+			      &raquo; <a href="{:url('show','Tags')}">Tag</a>
+			      <notpresent name="tags"> &raquo; <a href="{:url('show/module/'.$tmodule.'/name/'.rawurlencode($tag),'Tags')}">{$tag}</a></notpresent>
+					</td>
+		<td width="10px"><img src="../Public/images/topnav_right.jpg" border="0"></td>
+	</tr>
+	</table>
+</div>
+</div>
+<div align="center">
+<div id="body">
+<div class="table">
+
+<div id="left_1">
+<include file="../Public/left_login" />
+<include file="../Public/left_ads" />
+</div>
+
+<div id="middle_1"><div class="space_between"></div></div>
+
+<div id="right_1">
+<div class="global_sub">{$menuc.mcnname}</div>
+<div class="border_no_top">
+<div class="msg_content">
+<present name="tags"> <H4 >标签云集</H4></present>
+<notpresent name="tags"><H4>和[ <span style="color:#63B4CD">{$tag}</span> ] 相关的日志<span style="font-weight:normal"> [ {$count} ] </span></H4></notpresent>
+<present name="tags"><volist id="vo" name="tags" ><A HREF="{:url('show/module/'.$vo->module.'/name/'.rawurlencode($vo->name),'Tags')}"><span style="font-size:{$vo.count|getTitleSize};color:{$vo.id|rand_color}">{$vo.name}</span>({$vo.count})</A> &nbsp;&nbsp; </volist></present>
+<present name="list">
+<div class="article-top"><div class="pages">{$page}</div></div>
+<resultset id="vo" name="list" > 
+<div class="textbox-list">
+<div class="textbox-list-title"><IMG SRC="../Public/images/icon_point2.gif" WIDTH="13" HEIGHT="13" BORDER="0" ALT="" align="absmiddle"> [ <A HREF="{:url('index/Id/'.$vo->menuId,'Module'.C('COMPONENT_DEPR').$tmodule)}">{$vo.menu} </A> ] <A HREF="{:url('show/Id/'.$vo->aid,'Module'.C('COMPONENT_DEPR').$tmodule)}">{$vo:title|ubb}</A> {$vo.cTime|toDate='Y-m-d'} </div><div class="textbox-author"> [ <A HREF="{:url('show/Id/'.$vo->aid.'#reply','Module'.C('COMPONENT_DEPR').$tmodule)}"> 评论：{$vo.commentCount}</A> | 阅读：{$vo.readCount}  ]</div></div>
+</resultset>
+<div class="article-bottom"><div class="pages">{$page}</div></div>
+</present>
+</div>
+<div style="clear:both;"></div>
+</div>
+<div align="right"></div>
+</div>
+
+<div style="clear:both;"></div>
+</div>
+</div>
+</div>
+<include file="../Public/footer" />

@@ -1,0 +1,319 @@
+<include file="../Public/header" />
+<div align="center">
+<div id="top">
+	<table cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+		<td width="10px"><img src="../Public/images/topnav_left.jpg" border="0"></td>
+		<td style="background:url(../Public/images/topnav_bg.jpg) repeat-x" align="left">
+			&#8251;&nbsp;
+			<a href="__APP__">{&SITE_TITLE}</a>
+			&raquo;
+			<a href="__APP__">首页</a>
+					</td>
+		<td width="10px"><img src="../Public/images/topnav_right.jpg" border="0"></td>
+	</tr>
+	</table>
+</div>
+</div><div align="center">
+<div id="body">
+<div class="table">
+
+
+<div id="left_2">
+	<!-- 翻页图片 -->
+	<div><SCRIPT type="text/javascript">
+if(qgIE == "FF")
+{
+	filter_code = "filter:progid:dximagetransform.microsoft.wipe(gradientsize=1.0,wipestyle=4, motion=forward);";
+}
+else
+{
+	filter_code = "filter:progid:DXImageTransform.Microsoft.RevealTrans(duration=5, transition=23);"
+}
+
+var widths=730;
+var heights=150;
+var counts=2;//获取翻页图片数量
+img1=new Image();
+img1.src="../Public/images/banner.gif";
+url1=new Image ();
+url1.src="http://www.tpcms.cn";
+img2=new Image();
+img2.src="../Public/images/banner1.gif";
+url2=new Image ();
+url2.src="http://www.tpcms.cn";
+var nn=1;
+var key=0;
+function change_img()
+{
+	if(key==0)
+	{
+		key=1;
+	}
+	else if(document.all)
+	{
+		$("qgplayer_pic").filters[0].Apply();
+		$("qgplayer_pic").filters[0].Play(duration=2);
+	}
+	eval('$("qgplayer_pic").src=img'+nn+'.src');
+	if(qgIE != "FF")
+	{
+		eval('$("qgplayer_pic").filters.item(0).transition=23');
+	}
+	else
+	{
+		for(p_i=0;p_i<11;p_i++)
+		{
+			var p_i_i = 0.1 * p_i;
+			var p_i_m = 100 * p_i;
+			window.setTimeout("eval(ff_filter("+p_i_i+"))",p_i_m);
+		}
+	}
+	eval('$("qgplayer_url").href=url'+nn+'.src');
+	for (var i=1;i<=counts;i++)
+	{
+		$("xxjdjj"+i).className='axx';
+	}
+	$("xxjdjj"+nn).className='bxx';
+	nn++;
+	if(nn>counts)
+	{
+		nn=1;
+	}
+	tt=setTimeout('change_img()',4000);
+}
+function changeimg(n)
+{
+	nn=n;
+	window.clearInterval(tt);
+	change_img();
+}
+
+function ff_filter(t)
+{
+	var m = '$("qgplayer_pic").style.cssText = "-moz-opacity:'+t+';"';
+	return m;
+}
+
+document.write('<style>');
+document.write('.axx{padding:1px 7px;margin:1px;}');
+document.write('a.axx:link,a.axx:visited{text-decoration:none;color:#fff;line-height:12px;font:11px sans-serif;background-color:#666;}');
+document.write('a.axx:active,a.axx:hover{text-decoration:none;color:#fff;line-height:12px;font:11px sans-serif;background-color:#999;}');
+document.write('.bxx{padding:1px 7px;margin:1px;}');
+document.write('a.bxx:link,a.bxx:visited{text-decoration:none;color:#fff;line-height:12px;font:11px sans-serif;background-color:#D34600;}');
+document.write('a.bxx:active,a.bxx:hover{text-decoration:none;color:#fff;line-height:12px;font:11px sans-serif;background-color:#D34600;}');
+document.write('</style>');
+document.write('<div style="width:'+widths+'px;height:'+heights+'px;overflow:hidden;text-overflow:clip;">');
+var xljw_filter = filter_code;
+document.write('<div><a id="qgplayer_url" target="_blank"><img id="qgplayer_pic" style="border:0px;'+xljw_filter+'" width='+widths+' height='+heights+' /></a></div>');
+document.write('<div style="text-align:right;top:-20px;right:5px;position:relative;height:15px;padding:0px;margin:1px;border:0px;">');
+for(var i=1;i<counts+1;i++)
+{
+	document.write('<a href="javascript:changeimg('+i+');" id="xxjdjj'+i+'" class="axx" target="_self">'+i+'</a>');
+}
+document.write('</div></div>');
+change_img();
+</SCRIPT>
+</div>
+	<!-- 两列文章+一列投票 -->
+	<div style="padding-top:3px;padding-bottom:3px;">
+	<volist name="menu" id="vo">
+	<eq name="vo.indexMenu" value="1">
+        <div class="float_left" style="width:243px;padding-right:4px;">
+		  <div class="global_sub"><a href="{:url('index/Id/'.$vo->menuId,'Module'.C('COMPONENT_DEPR').$vo->module)}">{$vo.mcnname}</a></div>
+			<div style="height:175px" class="border_no_top" >
+			  <volist  name="iarticles" id="voa">
+			   <php>
+                 if ($vo->menuId==$voa->menuId){
+			   </php>
+				<div>&nbsp;&#8251; <a href="{:url('show/Id/'.$voa->aid,'Module'.C('COMPONENT_DEPR').$vo->module)}" style="" title="{$voa.title}"><font color="{$voa.titlecolor}">{$voa.title}</font></a>&nbsp;-&nbsp;<font size="1px" color="Gray">({$voa.cTime|date='Y-m-d',###})</font></div>
+			   <php>}</php>
+			 </volist>
+			 <div align="right"><a href="{:url('index/Id/'.$vo->menuId,'Module'.C('COMPONENT_DEPR').$vo->module)}" style="" title="更多">more...</a></div>
+		 </div>
+		</div>
+	</eq>
+	</volist>
+    </iterate>
+		<div style="clear:both;"></div>
+	</div>
+	<!-- 最新图片 -->
+	<div class="border">
+		<div style="padding:3px">
+			<table>
+			<tr>
+				<volist  name="picattach" id="vopic"><td style="width:150px;height:150px;margin:1px;border:1px #D4D4D4 solid;text-align:center;"><a href="{:url('show/Id/'.$vopic->recordId,'Module'.C('COMPONENT_DEPR').$vopic->module)}"><img src="__ROOT__/Public/Uploads/{$vopic.savename}" border="0" width="100px" height="100px"></a></td></volist>
+			</tr>
+			</table>
+		</div>
+	</div>
+	<div class="space_between"><div class="space_between"></div></div>
+	<div>
+				<div class="global_sub">最新产品<font color="Red"><b>（此为功能位置预留展示！）</b></font></div>
+		<div class="border_no_top">
+			<table width="99%">
+			<tr>
+								<td width="20%" height="120px" align="center"><a href="#" title="ThinkCMS"><img src="upfiles/200806/18/thumb_1213762879_85.gif" border="0" width="100px" height="100px" alt="ThinkCMS"></a></td>
+				<td valign="top" width="29%">
+					<div class="wtr">名称：<a href="#" title="ThinkCMS" style="">功能位置预留</a></div>
+					<div class="wtr">规格：功能位置预留</div>
+					<div class="dtr">编号：功能位置预留</div>
+					<div class="wtr">市场价格：0 元</div>
+					<div class="dtr">本站价格：<span style="color:red;">0</span> 元</div>
+				</td>
+											</tr>
+			</table>
+		</div>
+			</div>
+</div>
+<div id="middle_2"><div class="space_between"></div></div>
+<div id="right_2">
+	<div>
+		<div class="global_sub">站内公告</div>
+		<div class="border_no_top">
+			<div id="notice_1">
+				<div id="notice_2">
+				  <volist name="announce" id="vo">
+				    <div style="padding-left:2px;padding-right:2px;"><a href="#" style="color:darkblue;">{$vo.aTitle}</a><em>({$vo.cTime|date='Y-m-d,H:i:s',###})</em></div>
+				    <div style="padding-left:8px;padding-right:5px;">■ {$vo.aContent}</div><br />
+				  </volist>
+				</div>
+				<div id="notice_3"></div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+	marquee("notice_1","notice_2","notice_3");
+	</script>
+	<php>if(C('MEMBER_SYSTEM')){</php>
+	<div class="space_between"><img src="../Public/images/blank.gif" border="0" width="1" height="1"></div>
+	<div><!-- 会员登录及登录入的个人面板 -->
+<nosession name="uid">
+<div class="global_sub">会员登录</div>
+<div class="border_no_top">
+	<div align="center">
+	<table>
+	<php>if(C('PASSPORT')){</php>
+        <form method="post" id="indexLoginForm" action="__APP__/Passport_{&PASSPORT_TYPE}/checklogin" onSubmit="return logincheck();"/>
+    <php>}else{</php>
+        <form method="post" id="indexLoginForm" action="__APP__/Public/checklogin" onSubmit="return logincheck();"/>
+    <php>}</php>
+	<tr>
+		<td width="40px" align="right" height="30px">账号：</td>
+		<td><input type="text" name="username" id="username" class="userlogin_out" onmouseover="this.className='userlogin_over'" onmouseout="this.className='userlogin_out'" /></td>
+	</tr>
+	<tr>
+		<td align="right" height="30px">密码：</td>
+		<td><input type="password" name="password" id="password" class="userlogin_out" onmouseover="this.className='userlogin_over'" onmouseout="this.className='userlogin_out'" /></td>
+	</tr>
+	<tr>
+		<td colspan="2" align="center"><input type="image" src="../Public/images/login.gif" style="border:0px;" />
+			<a href="{:url('reg','Public')}"><img src="../Public/images/register.gif" border="0"></a></td>
+	</tr>
+	</form>
+	</table>
+	</div>
+</div>
+</nosession>
+<session name="uid">
+<div class="global_sub">会员中心</div>
+<div class="border_no_top">
+	<div align="left">
+	<table>
+	<tr>
+		<td width="100%" align="left" height="30px">用户名：{$userInfo.username}</td>
+	</tr>
+	<tr>
+		<td align="left" height="30px"><eq name="userInfo.type" value="a"><a href="__ROOT__/admin.php" target="_blank">【后台管理】</a>&nbsp;-&nbsp;</eq>【会员中心】</td>
+	</tr>
+	<tr>
+		<td align="left" height="30px"><a href="{:url('logout','Public')}">【退出登录】</a></td>
+	</tr>
+	</form>
+	</table>
+	</div>
+</div>
+</session>
+
+<script type="text/javascript">
+function logincheck()
+{
+	var username = $("username").value;
+	var password = $("password").value;
+	if(username == "")
+	{
+		alert("会员账号为空,请填写");
+		$("username").focus();
+		return false;
+	}
+	if(password == "")
+	{
+		alert("会员密码为空！");
+		$("password").focus();
+		return false;
+	}
+	$("loginsubject").disabled=true;
+}
+</script>
+</div>
+<php>}</php>
+<volist name="inpages" id="topin">
+	<div class="space_between"><img src="../Public/images/blank.gif" border="0" width="1" height="1"></div>
+	<div>
+				<div class="global_sub"><a href="{:url('index/Id/'.$topin->pagesId,'Pages')}">{$topin.pcnname}</a></div>
+		<div class="border_no_top"><div style="padding:5px;">{$topin.pContent|strip_tags}<div align="right"><a href="{:url('index/Id/'.$topin->pagesId,'Pages')}"><img src="../Public/images/more.jpg" border="0"></a></div></div></div>
+			</div>
+			</volist>
+	<div class="space_between"><div class="space_between"></div></div>
+	<div>
+				<div class="global_sub"><a href="{:url('show','Tags')}">标签（Tags）</a></div>
+		<div class="border_no_top">
+			<volist id="voitag" name="intags" ><A HREF="{:url('show/module/'.$voitag->module.'/name/'.rawurlencode($voitag->name),'Tags')}"><span style="font-size:{$voitag.count|getTitleSize};color:{$voitag.id|rand_color}">{$voitag.name}</span>({$voitag.count})</A> &nbsp;&nbsp;</volist><div align="right" style="padding:5px"><a href="{:url('show','Tags')}"><img src="../Public/images/more.jpg" border="0"></a></div>
+			</div>
+		</div>
+	<div class="space_between"><div class="space_between"></div></div>
+	<include file="../Public/left_ads" />
+	<div class="space_between"><div class="space_between"></div></div>
+	<div><!-- 搜索框 -->
+<div class="global_sub">站内搜索</div>
+<div class="border_no_top">
+	<div align="center">
+	<table>
+	<form method="post" action="#">
+	<tr>
+		<td><input type="text" name="keywords" style="width:120px;" value=""></td>
+	</tr>
+	<tr>
+		<td>
+			<select name="stype">
+			<option value="">全部</option>
+			<option value="article">文章</option>
+			<option value="picture">图片</option>
+			<option value="download">下载</option>
+			<option value="product">产品</option>
+			</select>
+			<input type="submit" value=" 搜 索 " class="button">
+		</td>
+	</tr>
+	</form>
+	</table>
+	</div>
+</div>
+</div>
+</div>
+
+<div style="clear:both;"></div>
+<div>
+<div class="global_sub" align="left">友情连接</div>
+		<div class="border_no_top" style="padding:10px;">
+			<table width="99%">
+			<tr><volist name="piclinks" id="vo" key="key"><a href="{$vo.linkto}" target="_blank"><img src="{$vo.lpic}" alt="{$vo.lname}"></a>&nbsp;&nbsp;</volist></tr>
+	        <tr><volist name="wlinks" id="vo"><a href="{$vo.linkto}" target="_blank">{$vo.lname}</a>&nbsp;&nbsp;</volist></tr>
+			</table>
+		</div>
+      </div>
+</div>
+</div>
+</div>
+</div>
+<include file="../Public/footer" />

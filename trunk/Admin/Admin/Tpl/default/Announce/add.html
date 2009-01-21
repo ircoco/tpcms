@@ -1,0 +1,38 @@
+<tagLib name="html" />
+<include file="../Public/header" />
+
+<div id="main" class="main" >
+<div class="content">
+<div class="title">新增数据 [ <A HREF="__URL__">返回列表</A> ]</div>
+<TABLE cellpadding=3 cellspacing=3>
+<FORM METHOD=POST id="form1" >
+<TR>
+	<TD class="tRight" >标题：</TD>
+	<TD class="tLeft" ><INPUT TYPE="text" class="medium bLeftRequire"  check='Require' warning="标题不能为空" NAME="aTitle" ></TD>
+</TR>
+<TR>
+	<TD class="tRight">状态：</TD>
+	<TD class="tLeft"><SELECT class="small bLeft"  NAME="status">
+	<option value="1">启用</option>
+	<option value="0">禁用</option>
+	</SELECT></TD>
+</TR>
+<TR>
+	<TD class="tRight tTop">内 容：</TD>
+	<TD class="tLeft"><TEXTAREA class="large bLeft"  NAME="aContent" ROWS="5" COLS="57"></TEXTAREA></TD>
+</TR>
+<TR>
+	<TD ></TD>
+	<TD class="center">
+	<INPUT TYPE="hidden" name="ajax" value="1">
+	<INPUT TYPE="button" value="保 存" onclick="sendForm('form1','__URL__/insert/')" class="small submit">
+	<INPUT TYPE="reset" class="submit  small" value="清 空" >
+	</TD>
+</TR>
+</TABLE>
+</FORM>
+</div>
+</div>
+<!-- 主页面结束 -->
+{// 加载尾部公共文件 }
+<include file="../Public/footer" /> 

@@ -1,0 +1,64 @@
+<TABLE class="list shadow" cellpadding=0 cellspacing=0 >
+<tr>
+	<td height='5' colspan=7 class="topTd" ></td>
+</tr>
+<TR class="row" >
+	<th class="tCenter space">网站设置</th>
+</TR>
+<TR class="row " >
+	<TD><IMG SRC="../Public/images/comment.gif" WIDTH="9" HEIGHT="9" BORDER="0" align="absmiddle" ALT=""> <A HREF="__APP__/Options">网站配置</A>&nbsp;&nbsp;&nbsp;<IMG SRC="../Public/images/comment.gif" WIDTH="9" HEIGHT="9" BORDER="0" align="absmiddle" ALT=""> <A HREF="__APP__/Options/cache">更新缓存</A></TD>
+</TR>
+<!--TR class="row " >
+	<TD><IMG SRC="../Public/images/comment.gif" WIDTH="9" HEIGHT="9" BORDER="0" align="absmiddle" ALT=""> <A HREF="__APP__/Options/themes">模板配置</A></TD-->
+</TR>
+<TR class="row " >
+	<TD><IMG SRC="../Public/images/comment.gif" WIDTH="9" HEIGHT="9" BORDER="0" align="absmiddle" ALT=""> <A HREF="__APP__/Module">模块管理</A></TD>
+</TR>
+<TR class="row " >
+	<TD><IMG SRC="../Public/images/comment.gif" WIDTH="9" HEIGHT="9" BORDER="0" align="absmiddle" ALT=""> <A HREF="__APP__/Menu">栏目管理</A></TD>
+</TR>
+<TR class="row " >
+	<TD><IMG SRC="../Public/images/comment.gif" WIDTH="9" HEIGHT="9" BORDER="0" align="absmiddle" ALT=""> <A HREF="__APP__/Links">友情连接管理</A></TD>
+</TR>
+
+<tr>
+	<td height='5' colspan=7 class="topTd" ></td>
+</tr>
+<TR class="row" >
+	<th class="tCenter space">扩展设置</th>
+</TR>
+<TR class="row " >
+	<TD><IMG SRC="../Public/images/comment.gif" WIDTH="9" HEIGHT="9" BORDER="0" align="absmiddle" ALT=""> <A HREF="__APP__/Ads">广告设置</A></TD>
+</TR>
+<TR class="row " >
+	<TD><IMG SRC="../Public/images/comment.gif" WIDTH="9" HEIGHT="9" BORDER="0" align="absmiddle" ALT=""> <A HREF="__APP__/Links">友情连接管理</A></TD>
+</TR>
+
+<tr>
+	<td height='5' colspan=7 class="bottomTd"></td>
+</tr>
+</TABLE>
+<TABLE class="list shadow" cellpadding=0 cellspacing=0 >
+<tr>
+	<td height='5' colspan=7 class="topTd" ></td>
+</tr>
+<TR class="row" >
+	<th class="tCenter space">内容管理</th>
+</TR>
+<TR class="row " >
+	<TD><IMG SRC="../Public/images/comment.gif" WIDTH="9" HEIGHT="9" BORDER="0" align="absmiddle" ALT=""> <A HREF="__APP__/Announce">公告管理</A></TD>
+</TR>
+<TR class="row " >
+	<TD><IMG SRC="../Public/images/comment.gif" WIDTH="9" HEIGHT="9" BORDER="0" align="absmiddle" ALT=""> <A HREF="__APP__/Pages">自定义页面管理</A></TD>
+</TR>
+<volist name="AdModule" id="vomenu">
+<eq name="vomenu.admenu" value="1">
+<TR class="row " >
+	<TD><IMG SRC="../Public/images/comment.gif" WIDTH="9" HEIGHT="9" BORDER="0" align="absmiddle" ALT=""> <A HREF="__APP__/{$vomenu.modname}">{$vomenu.modcnname}管理</A></TD>
+</TR>
+</eq>
+</volist>
+<tr>
+	<td height='5' colspan=7 class="bottomTd"></td>
+</tr>
+</TABLE>
