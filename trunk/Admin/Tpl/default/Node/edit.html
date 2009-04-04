@@ -1,0 +1,40 @@
+<tagLib name="html" />
+<include file="../Public/header" />
+<div id="main" class="main" >
+<div class="content">
+<div class="title">编辑<equal name="vo.level"  value="1">项目</equal><equal name="vo.level" value="2">模块</equal><equal name="vo.level"  value="3">操作</equal> [ <A HREF="__URL__">返回列表</A> ]</div>
+<div id="result" class="result none"></div>
+<FORM METHOD=POST action="__URL__/update/" id="form1" >
+<TABLE cellpadding=3 cellspacing=3 >
+<TR>
+	<TD class="tRight" ><equal name="vo.level"  value="1">项目</equal><equal name="vo.level" value="2">模块</equal><equal name="vo.level"  value="3">操作</equal>名：</TD>
+	<TD class="tLeft" ><INPUT TYPE="text" class="medium bLeftRequire" onfocus="notice('name')" check='^\w+$' warning="<equal name="level" value="1">项目</equal><equal name="level" value="2">模块</equal><equal name="level" value="3">操作</equal>名称不能为空,且不能含有空格"  NAME="name" value="{$vo.name}"></TD>
+</TR>
+<TR>
+	<TD class="tRight" >显示名：</TD>
+	<TD class="tLeft" ><INPUT TYPE="text" class="medium bLeftRequire" check='Require' warning="显示名称必须" onfocus="notice('title')" NAME="title" value="{$vo.title}"></TD>
+</TR>
+<TR>
+	<TD class="tRight">状态：</TD>
+	<TD class="tLeft"><SELECT class="small bLeft" onfocus="notice('status')" NAME="status">
+	<option <equal name="vo.status" value="1" >selected</equal> value="1">启用</option>
+	<option <equal name="vo.status" value="0" >selected</equal> value="0">禁用</option>
+	</SELECT></TD>
+</TR>
+<TR>
+	<TD class="tRight tTop">描 述：</TD>
+	<TD class="tLeft"><TEXTAREA class="large bLeft" NAME="remark" onfocus="notice('remark')" ROWS="5" COLS="57">{$vo.remark}</TEXTAREA></TD>
+</TR>
+<TR>
+	<TD ></TD>
+	<TD class="center"><INPUT TYPE="hidden" name="id" value="{$vo.id}" >
+	<INPUT TYPE="submit" value="保 存" class="button">
+	<INPUT TYPE="reset" onclick="history.back(-1)" class="button" value="取 消" >
+	</TD>
+</TR>
+</TABLE>
+</FORM>
+</div>
+</div>
+
+<include file="../Public/footer" />

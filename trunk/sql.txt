@@ -1,0 +1,479 @@
+-- phpMyAdmin SQL Dump
+-- version 2.11.4
+-- http://www.phpmyadmin.net
+--
+-- 主机: localhost
+-- 生成日期: 2009 年 04 月 02 日 13:16
+-- 服务器版本: 5.0.51
+-- PHP 版本: 5.2.5
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+--
+-- 数据库: `thinkcms`
+--
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `thinkcms_access`
+--
+
+CREATE TABLE IF NOT EXISTS `thinkcms_access` (
+  `groupId` smallint(6) unsigned NOT NULL,
+  `nodeId` smallint(6) unsigned NOT NULL,
+  `level` tinyint(1) NOT NULL,
+  `parentNodeId` smallint(6) NOT NULL,
+  `status` tinyint(1) default NULL,
+  KEY `groupId` (`groupId`),
+  KEY `nodeId` (`nodeId`),
+  KEY `level` (`level`),
+  KEY `parentNodeId` (`parentNodeId`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- 导出表中的数据 `thinkcms_access`
+--
+
+INSERT INTO `thinkcms_access` (`groupId`, `nodeId`, `level`, `parentNodeId`, `status`) VALUES
+(1, 1, 1, 0, NULL),
+(1, 50, 2, 1, NULL),
+(1, 37, 2, 1, NULL),
+(1, 43, 3, 3, NULL),
+(2, 7, 2, 1, NULL),
+(2, 3, 2, 1, NULL),
+(2, 8, 3, 2, NULL),
+(2, 9, 3, 2, NULL),
+(2, 10, 3, 2, NULL),
+(1, 32, 2, 1, NULL),
+(1, 12, 3, 2, NULL),
+(1, 11, 3, 2, NULL),
+(1, 10, 3, 2, NULL),
+(1, 9, 3, 2, NULL),
+(1, 8, 3, 2, NULL),
+(1, 13, 3, 2, NULL),
+(1, 14, 3, 2, NULL),
+(1, 15, 3, 2, NULL),
+(1, 16, 3, 6, NULL),
+(2, 2, 2, 1, NULL),
+(1, 28, 2, 1, NULL),
+(1, 21, 2, 1, NULL),
+(1, 20, 2, 1, NULL),
+(1, 19, 2, 1, NULL),
+(1, 6, 2, 1, NULL),
+(1, 5, 2, 1, NULL),
+(1, 27, 1, 0, NULL),
+(1, 3, 2, 1, NULL),
+(1, 2, 2, 1, NULL),
+(1, 30, 3, 19, NULL),
+(1, 31, 3, 19, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `thinkcms_ads`
+--
+
+CREATE TABLE IF NOT EXISTS `thinkcms_ads` (
+  `id` mediumint(8) unsigned NOT NULL auto_increment,
+  `adname` varchar(255) NOT NULL,
+  `place` varchar(20) NOT NULL,
+  `type` varchar(6) NOT NULL,
+  `content` text NOT NULL,
+  `morebz` varchar(200) NOT NULL,
+  `status` tinyint(2) unsigned NOT NULL,
+  `cTime` int(11) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- 导出表中的数据 `thinkcms_ads`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `thinkcms_announce`
+--
+
+CREATE TABLE IF NOT EXISTS `thinkcms_announce` (
+  `id` mediumint(8) NOT NULL auto_increment,
+  `aTitle` varchar(128) NOT NULL,
+  `aContent` text NOT NULL,
+  `status` int(2) unsigned NOT NULL,
+  `cTime` int(11) NOT NULL,
+  PRIMARY KEY  (`id`),
+  KEY `anId` (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- 导出表中的数据 `thinkcms_announce`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `thinkcms_article`
+--
+
+CREATE TABLE IF NOT EXISTS `thinkcms_article` (
+  `id` mediumint(8) unsigned NOT NULL auto_increment,
+  `uid` mediumint(8) unsigned NOT NULL,
+  `menuId` mediumint(8) unsigned NOT NULL,
+  `title` varchar(225) NOT NULL,
+  `titlecolor` varchar(20) NOT NULL,
+  `readCount` mediumint(11) NOT NULL,
+  `commentCount` mediumint(5) unsigned NOT NULL,
+  `aContent` longtext NOT NULL,
+  `tags` varchar(255) NOT NULL,
+  `status` tinyint(2) NOT NULL,
+  `mTime` int(11) NOT NULL,
+  `cTime` int(11) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- 导出表中的数据 `thinkcms_article`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `thinkcms_attach`
+--
+
+CREATE TABLE IF NOT EXISTS `thinkcms_attach` (
+  `attid` int(11) NOT NULL auto_increment,
+  `name` varchar(255) NOT NULL,
+  `type` varchar(255) default NULL,
+  `size` varchar(20) NOT NULL,
+  `extension` varchar(20) NOT NULL,
+  `savepath` varchar(255) NOT NULL,
+  `savename` varchar(255) NOT NULL,
+  `module` varchar(100) NOT NULL,
+  `recordId` int(11) NOT NULL,
+  `userId` int(11) unsigned default NULL,
+  `uploadTime` int(11) unsigned default NULL,
+  `downCount` mediumint(9) unsigned default '0',
+  `hash` varchar(32) NOT NULL,
+  `verify` varchar(8) NOT NULL,
+  `remark` varchar(255) default NULL,
+  `version` mediumint(6) unsigned NOT NULL default '0',
+  `updateTime` int(12) unsigned default NULL,
+  `downloadTime` int(11) unsigned NOT NULL,
+  PRIMARY KEY  (`attid`),
+  KEY `module` (`module`),
+  KEY `recordId` (`recordId`),
+  KEY `userId` (`userId`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- 导出表中的数据 `thinkcms_attach`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `thinkcms_comment`
+--
+
+CREATE TABLE IF NOT EXISTS `thinkcms_comment` (
+  `acid` mediumint(5) unsigned NOT NULL auto_increment,
+  `recordId` int(11) unsigned NOT NULL default '0',
+  `author` varchar(50) NOT NULL default '',
+  `email` varchar(255) NOT NULL default '',
+  `url` varchar(255) NOT NULL default '',
+  `ip` varchar(25) NOT NULL default '',
+  `content` text NOT NULL,
+  `cTime` int(11) unsigned NOT NULL default '0',
+  `agent` varchar(255) default NULL,
+  `status` tinyint(1) unsigned NOT NULL default '0',
+  `module` varchar(50) NOT NULL,
+  PRIMARY KEY  (`acid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- 导出表中的数据 `thinkcms_comment`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `thinkcms_group`
+--
+
+CREATE TABLE IF NOT EXISTS `thinkcms_group` (
+  `id` smallint(6) unsigned NOT NULL auto_increment,
+  `name` varchar(20) NOT NULL,
+  `pid` smallint(6) default NULL,
+  `status` tinyint(1) unsigned default NULL,
+  `remark` varchar(255) default NULL,
+  `ename` varchar(5) default NULL,
+  PRIMARY KEY  (`id`),
+  KEY `parentId` (`pid`),
+  KEY `ename` (`ename`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- 导出表中的数据 `thinkcms_group`
+--
+
+INSERT INTO `thinkcms_group` (`id`, `name`, `pid`, `status`, `remark`, `ename`) VALUES
+(1, '管理员组', NULL, 1, '具有一般管理员权限', NULL),
+(2, '普通用户组', NULL, 1, '一般用户权限', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `thinkcms_groupuser`
+--
+
+CREATE TABLE IF NOT EXISTS `thinkcms_groupuser` (
+  `groupId` mediumint(9) unsigned default NULL,
+  `userId` mediumint(9) unsigned default NULL,
+  KEY `groupId` (`groupId`),
+  KEY `userId` (`userId`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- 导出表中的数据 `thinkcms_groupuser`
+--
+
+INSERT INTO `thinkcms_groupuser` (`groupId`, `userId`) VALUES
+(1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `thinkcms_links`
+--
+
+CREATE TABLE IF NOT EXISTS `thinkcms_links` (
+  `id` mediumint(8) unsigned NOT NULL auto_increment,
+  `lname` varchar(32) NOT NULL,
+  `linkto` varchar(255) NOT NULL,
+  `lpic` varchar(255) NOT NULL,
+  `lintro` varchar(128) NOT NULL,
+  `displayorder` int(64) unsigned NOT NULL default '1',
+  `status` tinyint(1) unsigned NOT NULL default '1',
+  `cTime` int(11) unsigned NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- 导出表中的数据 `thinkcms_links`
+--
+
+INSERT INTO `thinkcms_links` (`id`, `lname`, `linkto`, `lpic`, `lintro`, `displayorder`, `status`, `cTime`) VALUES
+(1, 'ThinkCMS', 'http://www.tpcms.cn', 'http://www.tpcms.cn/CMS/Tpl/default/Public/images/logo8831.gif', 'ThinkPHP', 0, 1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `thinkcms_menu`
+--
+
+CREATE TABLE IF NOT EXISTS `thinkcms_menu` (
+  `id` mediumint(8) NOT NULL auto_increment,
+  `moduleId` varchar(30) NOT NULL,
+  `mname` varchar(30) NOT NULL,
+  `mcnname` varchar(30) NOT NULL,
+  `orderId` tinyint(2) NOT NULL,
+  `topMenu` tinyint(2) unsigned NOT NULL,
+  `indexMenu` tinyint(2) unsigned NOT NULL,
+  `status` tinyint(2) NOT NULL,
+  `cTime` int(11) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- 导出表中的数据 `thinkcms_menu`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `thinkcms_module`
+--
+
+CREATE TABLE IF NOT EXISTS `thinkcms_module` (
+  `id` mediumint(8) unsigned NOT NULL auto_increment,
+  `modname` varchar(30) NOT NULL,
+  `modcnname` varchar(30) NOT NULL,
+  `admenu` tinyint(1) unsigned NOT NULL,
+  `type` tinyint(2) unsigned NOT NULL,
+  `status` tinyint(2) unsigned NOT NULL,
+  `cTime` int(11) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+
+--
+-- 导出表中的数据 `thinkcms_module`
+--
+
+INSERT INTO `thinkcms_module` (`id`, `modname`, `modcnname`, `admenu`, `type`, `status`, `cTime`) VALUES
+(1, 'Article', '文章', 1, 1, 1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `thinkcms_node`
+--
+
+CREATE TABLE IF NOT EXISTS `thinkcms_node` (
+  `id` smallint(6) unsigned NOT NULL auto_increment,
+  `name` varchar(20) NOT NULL,
+  `title` varchar(50) default NULL,
+  `status` tinyint(1) unsigned default NULL,
+  `remark` varchar(255) default NULL,
+  `seqNo` smallint(6) unsigned default NULL,
+  `pid` smallint(6) unsigned NOT NULL,
+  `level` tinyint(1) unsigned NOT NULL,
+  `type` tinyint(1) NOT NULL default '0',
+  PRIMARY KEY  (`id`),
+  KEY `name` (`name`),
+  KEY `parentId` (`pid`),
+  KEY `level` (`level`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=51 ;
+
+--
+-- 导出表中的数据 `thinkcms_node`
+--
+
+INSERT INTO `thinkcms_node` (`id`, `name`, `title`, `status`, `remark`, `seqNo`, `pid`, `level`, `type`) VALUES
+(1, 'Admin', '后台项目', 1, '后台管理项目', NULL, 0, 1, 0),
+(2, 'Base', '公共模块', 1, '项目公共模块', NULL, 1, 2, 0),
+(3, 'Index', '默认模块', 1, '项目默认模块', NULL, 1, 2, 0),
+(4, 'Node', '节点管理', 1, '授权节点管理', NULL, 1, 2, 0),
+(5, 'Group', '权限管理', 1, '权限管理模块', NULL, 1, 2, 0),
+(6, 'User', '用户管理', 1, '用户模块', NULL, 1, 2, 0),
+(8, 'index', '列表', 1, '', NULL, 2, 3, 0),
+(9, 'add', '增加', 1, '', NULL, 2, 3, 0),
+(10, 'edit', '编辑', 1, '', NULL, 2, 3, 0),
+(11, 'insert', '写入', 1, '', NULL, 2, 3, 0),
+(12, 'update', '更新', 1, '', NULL, 2, 3, 0),
+(13, 'delete', '删除', 1, '', NULL, 2, 3, 0),
+(14, 'forbid', '禁用', 1, '', NULL, 2, 3, 0),
+(15, 'resume', '恢复', 1, '', NULL, 2, 3, 0),
+(16, 'resetPwd', '重置密码', 1, '', NULL, 6, 3, 0),
+(17, '1', '1', 1, '1', NULL, 7, 3, 0),
+(18, 'Options', '网站配置', 1, '网站配置', NULL, 1, 2, 0),
+(19, 'Module', '模块管理', 1, '模块管理', NULL, 1, 2, 0),
+(20, 'Menu', '栏目管理', 1, '栏目管理', NULL, 1, 2, 0),
+(21, 'Links', '友情连接管理', 1, '友情连接管理', NULL, 1, 2, 0),
+(22, 'cache', '缓存', 1, '缓存', NULL, 18, 3, 0),
+(28, 'Pages', '自定义页面', 1, '自定义页面', NULL, 1, 2, 0),
+(30, 'insert', '添加模块', 1, '添加模块', NULL, 19, 3, 0),
+(31, 'update', '更新模块', 1, '更新模块', NULL, 19, 3, 0),
+(32, 'Article', '文章管理', 1, '文章管理', NULL, 1, 2, 0),
+(33, 'insert', '添加文章', 1, '添加文章', NULL, 32, 3, 0),
+(34, 'add', '添加', 1, '添加', NULL, 32, 3, 0),
+(35, 'edit', '修改', 1, '修改', NULL, 32, 3, 0),
+(36, 'update', '更新文章', 1, '更新文章', NULL, 32, 3, 0),
+(37, 'Announce', '公告管理', 1, '公告管理', NULL, 1, 2, 0),
+(38, 'index', '修改配置', 1, '修改配置', NULL, 18, 3, 0),
+(39, 'save', '保存修改', 1, '保存修改', NULL, 18, 3, 0),
+(40, 'themes', '修改主题', 1, '修改主题', NULL, 18, 3, 0),
+(41, 'configTheme', '保存模板', 1, '保存模板', NULL, 18, 3, 0),
+(42, 'clearCache', '清除缓存', 1, '清除缓存', NULL, 18, 3, 0),
+(43, 'index', '首页', 1, '首页', NULL, 3, 3, 0),
+(50, 'Ads', '广告管理', 1, '广告管理', NULL, 1, 2, 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `thinkcms_pages`
+--
+
+CREATE TABLE IF NOT EXISTS `thinkcms_pages` (
+  `id` mediumint(8) NOT NULL auto_increment,
+  `pname` varchar(30) NOT NULL,
+  `pcnname` varchar(30) NOT NULL,
+  `pContent` text NOT NULL,
+  `type` tinyint(2) NOT NULL,
+  `orderId` tinyint(2) NOT NULL,
+  `status` tinyint(2) NOT NULL,
+  `cTime` int(11) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- 导出表中的数据 `thinkcms_pages`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `thinkcms_tag`
+--
+
+CREATE TABLE IF NOT EXISTS `thinkcms_tag` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `name` varchar(255) NOT NULL,
+  `count` mediumint(6) unsigned NOT NULL,
+  `module` varchar(100) NOT NULL,
+  PRIMARY KEY  (`id`),
+  KEY `name` (`name`),
+  KEY `module` (`module`),
+  KEY `count` (`count`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- 导出表中的数据 `thinkcms_tag`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `thinkcms_tagged`
+--
+
+CREATE TABLE IF NOT EXISTS `thinkcms_tagged` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `userId` int(11) unsigned NOT NULL,
+  `recordId` int(11) unsigned NOT NULL,
+  `tagId` int(11) NOT NULL,
+  `tagTime` int(11) NOT NULL,
+  `module` varchar(25) NOT NULL,
+  PRIMARY KEY  (`id`),
+  KEY `module` (`module`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- 导出表中的数据 `thinkcms_tagged`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `thinkcms_user`
+--
+
+CREATE TABLE IF NOT EXISTS `thinkcms_user` (
+  `uid` mediumint(8) unsigned NOT NULL auto_increment,
+  `type` varchar(30) NOT NULL,
+  `username` varchar(32) NOT NULL,
+  `password` varchar(32) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `status` tinyint(2) unsigned NOT NULL,
+  `registerTime` int(11) unsigned NOT NULL,
+  `lastloginTime` int(11) unsigned NOT NULL,
+  `cTime` int(11) unsigned NOT NULL,
+  PRIMARY KEY  (`uid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=45 ;
+
+--
+-- 导出表中的数据 `thinkcms_user`
+--
+
+INSERT INTO `thinkcms_user` (`uid`, `type`, `username`, `password`, `email`, `status`, `registerTime`, `lastloginTime`, `cTime`) VALUES
+(1, 'a', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin@admin.com', 1, 0, 1238678152, 0);

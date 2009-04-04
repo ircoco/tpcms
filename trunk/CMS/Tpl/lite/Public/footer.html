@@ -1,0 +1,32 @@
+﻿<!-- 公共页脚 --><style type="text/css">
+<!--
+a:link {
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+a:active {
+	text-decoration: none;
+}
+-->
+</style>
+<div id="footer" class="copy">
+<img src="../Public/images/spacer.gif" width="1" height="30"><br>
+<div align="center"><a href="#" class="gray">Top</a><volist name="pages" id="vo"><img src="../Public/images/spacer.gif" width="15" height="1"><a class="gray" href="{:url('index/Id/'.$vo->id,'Pages')}">{$vo.pcnname}</a></volist><img src="../Public/images/spacer.gif" width="15" height="1"><a class="gray" href="http://www.miibeian.gov.cn" target="_blank" title="中华人民共和国信息产业部信息备案号：{&SITE_ICP}">{&SITE_ICP}</a><br>
+<a href="__APP__" id="a">首页</a> | {&SITE_TITLE} &copy; Copyright. All Rights Reserved.<br>Powered by ThinkCMS
+</div>
+</div>
+<script type="text/javascript">
+function kill_errors()
+{
+	return true;
+}
+window.onerror = kill_errors;
+</script>
+</div>
+</body>
+</html>

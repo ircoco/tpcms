@@ -1,0 +1,98 @@
+<tagLib name="html" />
+<include file="../Public/header" />
+<div align="center">
+<div id="top">
+	<table cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+		<td width="10px"><img src="../Public/images/topnav_left.jpg" border="0"></td>
+		<td style="background:url(../Public/images/topnav_bg.jpg) repeat-x" align="left">
+			&#8251;&nbsp;
+			<a href="__APP__">{&SITE_TITLE}</a>
+			&raquo;
+			<a href="__APP__">网站首页</a>
+						&raquo; <a href="{:url('reg','Public')}">会员注册</a>
+					</td>
+		<td width="10px"><img src="../Public/images/topnav_right.jpg" border="0"></td>
+	</tr>
+	</table>
+</div>
+</div><div align="center">
+<div id="body">
+<div class="table">
+
+<div id="left_1">
+<include file="../Public/left_ads" />
+</div>
+
+<div id="middle_1"><div class="space_between"></div></div>
+<div id="right_1">
+	<div class="global_sub">会员注册</div>
+	<script language="JavaScript">
+	<!--
+	function doReg(){
+		ThinkAjax.sendForm('form1','__URL__/doreg',RegComplete,'result')
+		$('verify').value="";
+		fleshVerify();
+	}
+	function RegComplete(data,status){
+		if (status==1)
+		{
+			$('result').style.display = 'block';
+			$('result').innerHTML	=	'<span style="color:blue"><IMG SRC="../Public/images/ok.gif" WIDTH="20" HEIGHT="20" BORDER="0" ALT="" align="absmiddle" > 成功！3 秒后跳转～</span>';
+			$('form1').reset();
+			window.location = '__APP__/index';
+		}
+	}
+	//-->
+	</script>
+	<div class="border_no_top">
+	<div id="result" class="result none" align="center"></div>
+	<table cellpadding=3 cellspacing=3 align="center">
+        <form name="reg" id="form1" method="post">
+	    <tr>
+			<td>用户名</td>
+			<td><input name="username" type="text" id="username" maxlength="12"/><span id="userwarn"></span></td>
+			<td><span class="hint">请输入登录{&SITE_NAME}的用户名，长度应大于4位</span></td>
+		</tr>
+		<tr>
+			<td>Email</td>
+			<td><input name="email" type="text" id="email" /><span id="emailwarn"></span></td>
+			<td><span class="hint">对于您的E-MAIL，{&SITE_NAME}保证不会对外公开</span></td>
+        </tr>
+		<tr>
+			<td>密码</td>
+			<td><input  name="password" type="password" id="password" maxlength="32"  onKeyUp="pwStrength(this.value)" onBlur="pwStrength(this.value)"/><span id="passwarn"></span></td>
+		<td><span class="hint">长度应大于4位</span></td>
+		</tr>
+		<tr>
+			<td>密码确认</td>
+			<td><input name="repassword" type="password"  id="repassword" maxlength="32" /><span id="repswarn"></span></td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+		    <td>输入验证码</td>
+		    <td><input type="text" name="verify" id="verify" class="small text"> <a href="javascript:fleshVerify()"><img id="verifyImg" src="__URL__/verify" align="absmiddle"></a></td>
+		    <td>如看不清验证码，请点击图片刷新</td>
+		</tr>
+		<tr>
+			<td colspan="3">
+			<input type="hidden" name="ajax" value="1">
+			<php>if(C('PASSPORT')){</php>
+               <input type="button" value="注册" id="submit"  onclick="ThinkAjax.sendForm('form1','__APP__/Passport_{&PASSPORT_TYPE}/doreg',RegComplete,'result')" class="button"/>
+            <php>}else{</php>
+               <input type="button" value="注册" id="submit" onclick="doReg()" class="button" />
+            <php>}</php>
+            <input type="reset" value="重填" id="reset" class="button" />
+			</td>
+		</tr>
+		</form>
+    </table>
+    </div>
+		<div align="right"></div>
+</div>
+<div style="clear:both;"></div>
+
+</div>
+</div>
+</div>
+<include file="../Public/footer" />

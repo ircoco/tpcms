@@ -1,0 +1,59 @@
+<tagLib name="html" />
+<include file="../Public/header" />
+<script language="JavaScript">
+<!--
+function RegComplete(data,status){
+	if (status==1)
+	{
+		$('result').style.display = 'block';
+		$('result').innerHTML	=	'<span style="color:blue"><IMG SRC="../Public/images/ok.gif" WIDTH="20" HEIGHT="20" BORDER="0" ALT="" align="absmiddle" > 成功！3 秒后跳转～</span>';
+		$('form1').reset();
+		window.location = '__URL__/login';
+	}
+}
+//-->
+</script>
+<div id="content">
+<div id="content_left">
+<img src="../Public/images/spacer.gif" width="1" height="16"><br>
+<div id="margin_left" class="width">
+<form name="login" id="form1" method="post">
+<img src="../Public/images/spacer.gif" width="1" height="17"><br>
+<div id="left_cont_center">
+<div id="result" class="result none" align="center"></div><br>
+<img src="../Public/images/spacer.gif" width="1" height="6"><br>
+用户名:<br>
+<img src="../Public/images/spacer.gif" width="1" height="2"><br>
+<div><input name="username" type="text" id="username" class="form" maxlength="12"/></div>
+<img src="../Public/images/spacer.gif" width="1" height="6"><br>
+EMAIL:<br>
+<img src="../Public/images/spacer.gif" width="1" height="2"><br>
+<div><input name="email" type="text" id="email" value="" class="form"/></div>
+<img src="../Public/images/spacer.gif" width="1" height="6"><br>
+密码:<br>
+<img src="../Public/images/spacer.gif" width="1" height="2"><br>
+<div><input  name="password" type="password" id="password" maxlength="32" class="form"/></div>
+<img src="../Public/images/spacer.gif" width="1" height="6"><br>
+密码确认:<br>
+<img src="../Public/images/spacer.gif" width="1" height="2"><br>
+<div><input name="repassword" type="password"  id="repassword" maxlength="32" class="form"/></div>
+<img src="../Public/images/spacer.gif" width="1" height="6"><br>
+输入验证码:<br>
+<img src="../Public/images/spacer.gif" width="1" height="2"><br>
+<div><input type="text" name="verify" id="verify" class="small text"> <a href="javascript:fleshVerify()"><img id="verifyImg" src="__URL__/verify" align="absmiddle"></a></div>
+<img src="../Public/images/spacer.gif" width="1" height="6"><br>
+<img src="../Public/../Public/images/spacer.gif" width="1" height="2"><br>
+<input type="hidden" name="ajax" value="1">
+<div><php>if(C('PASSPORT')){</php>
+<input type="button" value="注册" id="submit"  onclick="ThinkAjax.sendForm('form1','__APP__/Passport_{&PASSPORT_TYPE}/doreg',RegComplete,'result')" class="button"/>
+<php>}else{</php>
+<input type="button" value="注册" id="submit" onclick="ThinkAjax.sendForm('form1','__URL__/doreg',RegComplete,'result')" class="button" />
+<php>}</php></div>
+<img src="../Public/images/spacer.gif" width="1" height="6"><br>
+</form>
+</div>
+</div>
+
+</div>
+<include file="../Public/right" />
+<include file="../Public/footer" />

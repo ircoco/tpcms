@@ -1,0 +1,21 @@
+<tagLib name="cx,html" />
+<include file="../Public/header" />
+<div id="main" class="main" >
+<div class="content">
+<div class="title">模板管理</div>
+<TABLE cellpadding=3 cellspacing=3>
+<form method="POST" action="{:url('configTheme')}">
+<TR>
+	<TD class="tRight" >选择模板：</TD>
+	<TD class="tLeft" ><SELECT class="small bLeft"  NAME="DEFAULT_TEMPLATE" style="width:200px;">
+	<volist id="template" name="templateList">
+	<option <php>if ($web_config->DEFAULT_TEMPLATE==$templat){</php>elected<php>}</php> value="{$template}">{$template}</option>
+	</volist>
+	</SELECT></TD>
+	<TD><INPUT TYPE="submit" value="保 存" class="small submit"></TD>
+</TR>
+</form>
+</TABLE>
+</div>
+</div>
+<include file="../Public/footer" /> 

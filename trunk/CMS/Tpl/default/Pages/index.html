@@ -1,0 +1,54 @@
+<include file="../Public/header" />
+<div align="center">
+<div id="top">
+	<table cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+		<td width="10px"><img src="../Public/images/topnav_left.jpg" border="0"></td>
+		<td style="background:url(../Public/images/topnav_bg.jpg) repeat-x" align="left">
+			&#8251;&nbsp;
+			<a href="__APP__">{&SITE_TITLE}</a>
+			&raquo;
+			<a href="__APP__">网站首页</a>
+						&raquo; <a href="{:url('index/Id/'.$pagec->id,'Pages')}">{$pagec.pcnname}</a>
+					</td>
+		<td width="10px"><img src="../Public/images/topnav_right.jpg" border="0"></td>
+	</tr>
+	</table>
+</div>
+</div><div align="center">
+<div id="body">
+<div class="table">
+
+
+<div id="left_1">
+<include file="../Public/left_login" />
+<include file="../Public/left_ads" />
+<div class="space_between"><div class="space_between"></div></div>
+	<div class="global_sub">相关分类</div>
+	<div class="border_no_top">
+	   <volist name="pages" id="vo">
+		<php>if ($vo->id==$pagec->id){</php>
+		  <div style="padding-left:20px;"><a style="color:red;" href="{:url('index/Id/'.$vo->id,'Pages')}">{$vo.pcnname}</a></div>
+		<php>}else{</php>
+		  <div style="padding-left:20px;"><a href="{:url('index/Id/'.$vo->id,'Pages')}">{$vo.pcnname}</a></div>
+		<php>}</php>
+	   </volist>
+   </div>
+</div>
+
+<div id="middle_1"><div class="space_between"></div></div>
+
+<div id="right_1">
+	<div class="global_sub">{$pagec.pcnname}</div>
+	<div class="border_no_top">
+		<div style="padding:5px;">
+			<div>{$pagec.pContent}</div>
+					</div>
+	</div>
+</div>
+<div style="clear:both;"></div>
+
+</div>
+</div>
+</div>
+<include file="../Public/footer" />

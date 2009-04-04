@@ -1,0 +1,20 @@
+<tagLib name="html" />
+<include file="../../Public/header" />
+<div id="content">
+<div id="content_left">
+<img src="__ROOT__/CMS/Tpl/{&DEFAULT_TEMPLATE}/Public/images/spacer.gif" width="1" height="16"><br>
+<div id="margin_left" class="width">
+<span class="big">{$menuc.mcnname}</span><br>
+<img src="__ROOT__/CMS/Tpl/{&DEFAULT_TEMPLATE}/Public/images/spacer.gif" width="1" height="7"><br>
+<div id="margin_left">
+<volist name="articles" id="vo">
+<img src="__ROOT__/CMS/Tpl/{&DEFAULT_TEMPLATE}/Public/images/arr.jpg" align="absmiddle">&nbsp;&nbsp;<a id="a" href="{:url('show/Id/'.$vo->id,'Module'.C('COMPONENT_DEPR').'Article')}" title="{$vo.title}" style=""><font color="{$vo.titlecolor}">{$vo.title}</font></a> {$vo.cTime|toDate='Y-m-d'} [ <a id="a" href="{:url('show/Id/'.$vo->id.'#reply','Module'.C('COMPONENT_DEPR').Article)}"> 评论：{$vo.commentCount}</a> | 阅读：{$vo.readCount}  ]<br>
+<img src="__ROOT__/CMS/Tpl/{&DEFAULT_TEMPLATE}/Public/images/spacer.gif" width="1" height="5"><br>
+</volist>
+</div>
+</div>
+<img src="__ROOT__/CMS/Tpl/{&DEFAULT_TEMPLATE}/Public/images/spacer.gif" width="1" height="26"><br>
+
+</div>
+<include file="../../Public/right" />
+<include file="../../Public/footer" />

@@ -1,0 +1,23 @@
+<include file="../Public/header" />
+<div id="content">
+<div id="content_left">
+<img src="../Public/images/spacer.gif" width="1" height="16"><br>
+<div id="margin_left" class="width">
+<span class="big">{$menuc.mcnname}</span><br>
+<img src="../Public/images/spacer.gif" width="1" height="7"><br>
+<present name="tags"> <H4 >标签云集</H4></present>
+<notpresent name="tags"><H4>和[ <span style="color:#63B4CD">{$tag}</span> ] 相关的日志<span style="font-weight:normal"> [ {$count} ] </span></H4></notpresent>
+<present name="tags"><volist id="vo" name="tags" ><A HREF="{:url('show/module/'.$vo->module.'/name/'.rawurlencode($vo->name),'Tags')}"><span style="font-size:{$vo.count|getTitleSize};color:{$vo.id|rand_color}">{$vo.name}</span>({$vo.count})</A> &nbsp;&nbsp; </volist></present>
+<present name="list">
+<div class="article-top"><div class="pages">{$page}</div></div>
+<resultset id="vo" name="list" > 
+<div class="textbox-list">
+<div class="textbox-list-title"><IMG SRC="../Public/images/icon_point2.gif" WIDTH="13" HEIGHT="13" BORDER="0" ALT="" align="absmiddle"> [ <A HREF="{:url('index/Id/'.$vo->menuId,'Module'.C('COMPONENT_DEPR').$tmodule)}">{$vo.menu} </A> ] <A HREF="{:url('show/Id/'.$vo->id,'Module'.C('COMPONENT_DEPR').$tmodule)}">{$vo:title|ubb}</A> {$vo.cTime|toDate='Y-m-d'} </div><div class="textbox-author"> [ <A HREF="{:url('show/Id/'.$vo->id.'#reply','Module'.C('COMPONENT_DEPR').$tmodule)}"> 评论：{$vo.commentCount}</A> | 阅读：{$vo.readCount}  ]</div></div>
+</resultset>
+<div class="article-bottom"><div class="pages">{$page}</div></div>
+</present>
+<img src="../Public/images/spacer.gif" width="1" height="26"><br>
+</div>
+</div>
+<include file="../Public/right" />
+<include file="../Public/footer" />

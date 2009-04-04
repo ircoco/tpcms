@@ -1,0 +1,60 @@
+<tagLib name="html" />
+<!-- 网站首页 -->
+<!-- 公共头部页信息 -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><present name="title">{$title}</present>{&SITE_TITLE} - {&SITE_DESCRIPTION} - Powered by ThinkCMS</title>
+<meta name="description" content="{&SITE_DESCRIPTION},ThinkCMS">
+<present name="keywords"><meta name="keywords" content="{$keywords}" /></present>
+<meta name="robots" content="all" />
+<meta name="author" content="ThinkCMS" />
+<meta name="Copyright" content="Copyright (c) 2007 ThinkCMS | www.tpcms.cn" />
+<link href="../Public/images/style.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/fck.css" />
+<script type="text/javascript" src="__PUBLIC__/Js/UbbEditor.js"></script>
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+<html:link type="js" href ="../Public/Js/Common.js" />
+<html:import type="js" file="Js.Base" /> 
+<html:import type="js" file="Js.prototype" /> 
+<html:import type="js" file="Js.mootools" /> 
+<html:import type="js" file="Js.Ajax.ThinkAjax" /> 
+<html:import type="js" file="Js.Form.CheckForm" /> 
+<html:import type="js" file="Js.Util.ImageLoader" />
+<script type="text/javascript">
+<!--
+//指定当前组模块URL地址
+var URL = '__URL__';
+var APP	 =	 '__APP__';
+var PUBLIC = '__PUBLIC__';
+var ROOT = '__ROOT__';
+//-->
+</script>
+<SCRIPT LANGUAGE="JavaScript">
+var URL = '__URL__';
+var APP	 =	 '__APP__';
+var PUBLIC = '__PUBLIC__';
+ThinkAjax.updateTip = '<IMG SRC="../Public/images/loading2.gif" WIDTH="16" HEIGHT="16" BORDER="0" ALT="loading..." align="absmiddle"> 数据处理中...';
+</SCRIPT>
+</head>
+<body>
+<div id="wrap">
+<div id="top">
+<img src="../Public/images/spacer.gif" width="1" height="16"><br>
+<img src="../Public/images/spacer.gif" width="603" height="1"><nosession name="uid"><a href="{:url('login','Public')}" class="white big">登录</a><php>if(C('ALLOW_REG')){</php>&nbsp;&nbsp;&nbsp;<a href="{:url('reg','Public')}" class="white big">注册</a><php>}</php></nosession><session name="uid"><php>if($_SESSION['isAdmin']){</php>[<a href="__ROOT__/admin.php" class="white big" target="_blank">后台管理</a>]&nbsp;-&nbsp;<php>}</php>[<a class="white big" href="{:url('logout','Public')}">退出</a>]</td></session><br>
+<img src="../Public/images/spacer.gif" width="1" height="15"><br>
+<div id="menu">
+<img src="../Public/images/spacer.gif" width="1" height="13"><br>
+<img src="../Public/images/spacer.gif" width="43" height="1"><a href="__APP__" class="top">主页</a><img src="../Public/images/spacer.gif" width="71" height="1"><a href="http://www.icmsu.com" target="_blank" class="top">互动交流</a><img src="../Public/images/spacer.gif" width="70" height="1"><a href="{:url('index/Id/'.'2','Module'.C('COMPONENT_DEPR').'Article')}" class="top">下载</a><img src="../Public/images/spacer.gif" width="80" height="1"><a href="{:url('show','Tags')}" class="top">标签云</a><img src="../Public/images/spacer.gif" width="68" height="1"><a href="http://www.66vps.com/" class="top" target="_blank">推荐IDC</a><img src="../Public/images/spacer.gif" width="65" height="1"><a href="{:url('Index/t/default','Index')}" class="top">演示</a>
+<!--span class="topmenu"><a href="__APP__" class="top">首页</a></span><volist name="menu" id="vo"><eq name="vo.topMenu" value="1"><span class="topmenu"><a href="{:url('index/Id/'.$vo->id,'Module'.C('COMPONENT_DEPR').$vo->module)}" class="top">{$vo.mcnname}</a></span></eq></volist><span class="topmenu1"><a href="http://www.icmsu.com" target="_blank" class="top">互动交流</a></span-->
+</div>
+<img src="../Public/images/spacer.gif" width="1" height="20"><br>
+<div class="logo_txt">
+<img src="../Public/images/logo.png" align="left" class="logo">
+<img src="../Public/images/spacer.gif" width="1" height="5"><br>
+<strong>ThinkCMS</strong>是一个基于国内领先开源框架ThinkPHP开发的开源CMS内容管理平台。ThinkCMS采用模块化开发，方便您自由扩展网站的使用范围。灵活多变，敏捷应用，适用于企业网站以及行业网站搭建的高性能内容管理系统。<br>
+<a href="http://www.icmsu.com" id="a" target="_blank">互动交流 >> </a></div>
+</div>
+
+<div id="line"><img src="../Public/images/spacer.gif"></div>
