@@ -1,0 +1,49 @@
+<include file="../Public/header" />
+ <SCRIPT LANGUAGE="JavaScript">
+<!--
+function loginHandle(data,status){
+if (status==1)
+{
+$('result').innerHTML	=	'<span style="color:blue"><IMG SRC="../Public/images/ok.gif" WIDTH="20" HEIGHT="20" BORDER="0" ALT="" align="absmiddle" > 登录成功！3 秒后跳转～</span>';
+$('form1').reset();
+window.location = '__APP__/index';
+}
+		
+}
+//-->
+</SCRIPT>
+<div id="content">
+<div id="content_left">
+<img src="../Public/images/spacer.gif" width="1" height="16"><br>
+<div id="margin_left" class="width">
+<form name="login" id="form1" method="post">
+<img src="../Public/images/spacer.gif" width="1" height="17"><br>
+<div id="left_cont_center">
+<div id="result" class="result none" align="center"></div><br>
+<img src="../Public/images/spacer.gif" width="1" height="6"><br>
+账号:<br>
+<img src="../Public/images/spacer.gif" width="1" height="2"><br>
+<div><input type="text" class="form" name="username"></div>
+<img src="../Public/images/spacer.gif" width="1" height="6"><br>
+密码:<br>
+<img src="../Public/images/spacer.gif" width="1" height="2"><br>
+<div><input type="password" name="password" id="password" class="form"></div>
+<img src="../Public/images/spacer.gif" width="1" height="6"><br>
+<img src="../Public/../Public/images/spacer.gif" width="1" height="2"><br>
+<div>
+<input type="hidden" name="ajax" value="1">
+<php>if(C('PASSPORT')){</php>
+<input type="button" value="登录" id="submit"  onclick="ThinkAjax.sendForm('form1','__APP__/Passport_{&PASSPORT_TYPE}/checkLogin',loginHandle,'result')" class="button"/>
+<php>}else{</php>
+<input type="button" value="登录" id="submit" onclick="ThinkAjax.sendForm('form1','__URL__/checkLogin/',loginHandle,'result')" class="button" />
+<php>}</php>
+</div>
+<img src="../Public/images/spacer.gif" width="1" height="6"><br>
+</form>
+</div>
+</div>
+
+</div>
+<include file="../Public/right" />
+
+<include file="../Public/footer" />

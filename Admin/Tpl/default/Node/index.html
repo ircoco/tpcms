@@ -1,0 +1,25 @@
+<tagLib name="html" />
+<include file="../Public/header" />
+<!-- 主体内容  -->
+<div id="main" class="main" >
+<div class="content" >
+<div class="title"><present name="nodeName">[{$nodeName}]</present><equal name="level" value="1">项目</equal><equal name="level" value="2">模块</equal><equal name="level" value="3">操作</equal>列表</div>
+<!--  功能操作区域  -->
+<div class="operate" width="100%">
+<html:imageBtn name="add" value="新增" click="add()" style="impBtn hMargin fLeft shadow" />
+<html:imageBtn name="edit" value="编辑" click="edit()" style="impBtn hMargin fLeft shadow" />
+<html:imageBtn name="delete" value="删除" click="del()" style="impBtn hMargin fLeft shadow" />
+</div>
+<!-- 功能操作区域结束 -->
+<p>&nbsp;</p>
+<!-- 列表显示区域  -->
+<div class="list" >
+<div id="result" class="result none"></div><html:list id="checkList" action="true" name="node" style="list" checkbox="true" datasource="list" show="id:编号|10%,name:名称:child,title:显示名:edit,remark:说明,status|getStatus:状态" actionlist="forbid|resume:禁用|恢复" /> 
+</div>
+<!--  分页显示区域 -->
+<div class="page">{$page}</div>
+<!-- 列表显示区域结束 -->
+</div>
+</div>
+<!-- 主页面结束 -->
+<include file="../Public/footer" />

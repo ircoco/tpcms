@@ -1,0 +1,67 @@
+<include file="../Public/header" />
+<div id="content">
+<div id="content_left">
+<img src="../Public/images/spacer.gif" width="1" height="16"><br>
+<div id="margin_left" class="width">
+<span class="big">ThinkCMS</span><br>
+<img src="../Public/images/spacer.gif" width="1" height="8"><br>
+<img src="../Public/images/spacer.gif" width="1" height="7"><br>
+<img src="../Public/images/tpcms1.png" align="left" class="img">
+<span class="big gray">What is it?</span><br>
+ThinkCMS将能快速帮您的企业、行业搭建属于自己的专业网站！无需复杂的设置与修改，轻松点击，让您在网络上战胜您的竞争对手！<br>
+<img src="../Public/images/spacer.gif" width="1" height="26"><br>
+<img src="../Public/images/spacer.gif" width="1" height="7"><br>
+<img src="../Public/images/1im2.jpg" align="left" class="img">
+<span class="big gray">免费、开源</span><br>
+ThinkCMS秉承开源共享的理念，遵循Apache2开源协议发布，并且永久免费使用！<br>
+<img src="../Public/images/spacer.gif" width="1" height="26"><br>
+<img src="../Public/images/1im3.jpg" align="left" class="img">
+<span class="big gray">模块化、多模板</span><br>
+完全模块化开发操作、多模板，方便您根据自己的需求随意组建不同风格、类型的网站。让您的网站与众不同！<br>
+<img src="../Public/images/spacer.gif" width="1" height="26"><br>
+<img src="../Public/images/2im1.jpg" align="left" class="img">
+<span class="big gray">友好的氛围</span><br>
+ThinkCMS官方交流、讨论社区“I CMS U！”提供一个所有TC使用者、开发者的交流场所，您可以在此与其它站长、与我们的开发人员交流，获取帮助！<a href="http://www.icmsu.com" target="_blank" id="a">Learn More >></a><br>
+<img src="../Public/images/spacer.gif" width="1" height="26"><br>
+<img src="../Public/images/2im4.jpg" align="left" class="img">
+<span class="big gray">完善的扩展服务</span><br>
+如果您对您网站要求更高，我们将提供优质的模块应用、模板定制开发服务；如果您期望得到官方的优化、建站服务，我们将按照您的要求为您提供丰富的有偿服务！<br>
+<img src="../Public/images/spacer.gif" height="50"><br>
+</div>
+<div id="content_left">
+<div id="left_cont_left">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="big">最新文章</span><br>
+<img src="../Public/../Public/images/spacer.gif" width="1" height="4"><br>
+<img src="../Public/images/px1.jpg"><br>
+<img src="../Public/images/spacer.gif" width="1" height="17"><br>
+<div id="margin_left1">
+<iterate name="iarticles" id="voa" offset="0" length='10'>
+<img src="../Public/images/arr.jpg" align="absmiddle">&nbsp;&nbsp;<a href="{:url('show/Id/'.$voa->id,'Module'.C('COMPONENT_DEPR').$vo->module)}"" id="a"><font color="{$voa.titlecolor}">{$voa.title}</font></a><br>
+</iterate>
+<br>
+<br>
+<br>
+</div>
+</div>
+<div id="left_cont_right">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="big">公告</span><br>
+<img src="../Public/images/spacer.gif" width="1" height="4"><br>
+<img src="../Public/images/px1.jpg"><br>
+<img src="../Public/images/spacer.gif" width="1" height="17"><br>
+<div id="margin_left1">
+<img src="../Public/images/spacer.gif" width="1" height="8"><br>
+<iterate name="announce" id="vo" offset="0" length='10'>
+<img src="../Public/images/arr.jpg" align="absmiddle">&nbsp;&nbsp;{$vo.aContent}<em>&nbsp;-&nbsp;(<a class="gray t n">{$vo.cTime|date='Y-m-d,H:i:s',###}</a>)</em>
+</iterate>
+<br>
+<br>
+<br>
+<img src="../Public/images/spacer.gif" width="1" height="4"><br>
+</div>
+</div>
+</div>
+
+</div>
+
+<include file="../Public/right" />
+<include file="../Public/footer" />

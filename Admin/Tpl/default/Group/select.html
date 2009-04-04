@@ -1,0 +1,60 @@
+<tagLib name="html" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<TITLE>权限组挑选</TITLE>
+<html:link type="css" href ="../Public/Css/style.css" />
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+function ok(){
+	var result = new Array();
+	var obj	   = form1.group.options;
+	var j=0;
+	for(var i=0;i<obj.length;i++){
+		if (obj[i].selected==true){
+			result[j] = new Array();
+			result[j][0]	=	obj[i].text;
+			result[j][1]	=	obj[i].value;
+			j++;
+		}
+	}
+	returnValue=result;
+	window.close(); 
+}
+
+//-->
+</SCRIPT>
+<base target="_self" />
+</HEAD>
+
+<BODY style="margin:0;overflow:hidden">
+<FORM METHOD="POST" style="margin:0" name = "form1" ACTION="">
+<div align="center">
+<TABLE class="order" cellpadding=0 style="margin:0" cellspacing=0 width="100%">
+<tr><td height="5" colspan="2" class="topTd" ></td></tr>
+<TR>
+	<Th colspan=2 align="center"><div class="fLeft"><input name="name" type="text" style="width:165px"></div>
+<html:imageBtn name="search" value="查询" click="form1.submit()" style="impBtn hMargin fLeft " /></Th>
+</TR>
+<TR >
+	<TD width="75%" align="right">
+	<div class="solid">
+	<SELECT class="MultiSelect" ondblclick="ok()" name="group" size="15">
+	<option value="0">无上级组</option>
+<voList name="list" id="group" >
+<option value="{$group.id}">{$group.name}</option>
+</voList>
+</SELECT></div></TD>
+</TR>
+<TR>
+	<TD colspan=2 align="center">
+<input type="submit" value="确 定" onclick="ok()" class="button" /> 
+<input type="reset" value="取 消" onclick="window.close()" class="button" />
+</TD>
+</TR>
+<tr><td height="5" colspan="2" class="topTd" ></td></tr>
+</TABLE>
+</div>
+</FORM>
+</html>

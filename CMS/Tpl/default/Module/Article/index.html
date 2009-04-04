@@ -1,0 +1,85 @@
+<tagLib name="html" />
+<include file="../../Public/header" />
+<div align="center">
+<div id="top">
+	<table cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+		<td width="10px"><img src="__ROOT__/CMS/Tpl/default/Public/images/topnav_left.jpg" border="0"></td>
+		<td style="background:url(../Public/images/topnav_bg.jpg) repeat-x" align="left">
+			&#8251;&nbsp;
+			<a href="__APP__">{&SITE_TITLE}</a>
+			&raquo;
+			<a href="__APP__">网站首页</a>
+						&raquo; <a href="{:url('index/Id/'.$menuc->id,'Module'.C('COMPONENT_DEPR').'Article')}">{$menuc.mcnname}</a>
+					</td>
+		<td width="10px"><img src="__ROOT__/CMS/Tpl/default/Public/images/topnav_right.jpg" border="0"></td>
+	</tr>
+	</table>
+</div>
+</div><div align="center">
+<div id="body">
+<div class="table">
+
+<div id="left_1">
+<include file="../../Public/left_login" />
+<include file="../../Public/left_article" />
+<div class="space_between"><div class="space_between"></div></div>
+<include file="../../Public/left_ads" />
+</div>
+
+<div id="middle_1"><div class="space_between"></div></div>
+
+<div id="right_1">
+	<div class="global_sub">{$menuc.mcnname}</div>
+	<div class="border_no_top">
+	 	<div class="list_out" onmouseover="this.className='list_over'" onmouseout="this.className='list_out'">
+			<table cellpadding="0" cellspacing="0">
+			<tr>
+				<td height="23px" width="450px">&nbsp;标题</a>
+				</td>
+				<td width="110px" style="color:#007BA8">所属栏目</td>
+				<td width="45px" style="color:#007BA8">阅读量</td>
+				<td width="45px" style="color:#007BA8">评论数</td>
+				<td width="150px" style="color:#007BA8" align="right">最后修改</td>
+			</tr>
+			</table>
+		</div>
+	      <volist name="articles" id="vo">
+				<div class="list_out" onmouseover="this.className='list_over'" onmouseout="this.className='list_out'">
+			<table cellpadding="0" cellspacing="0">
+			<tr>
+				<td height="23px" width="450px">&nbsp;
+					<img src="__ROOT__/CMS/Tpl/default/Public/images/preart.gif" border="0" align="absmiddle">&nbsp;
+										<a href="{:url('show/Id/'.$vo->id,'Module'.C('COMPONENT_DEPR').'Article')}" title="{$vo.title}" style=""><font color="{$vo.titlecolor}">{$vo.title}</font></a>
+				</td>
+				<td width="110px" style="color:#007BA8"><a href="{:url('index/Id/'.$menuc->id,'Module'.C('COMPONENT_DEPR').'Article')}" title="{$menuc.mcnname}">{$menuc.mcnname}</a></td>
+				<td width="45px" style="color:#007BA8">{$vo.readCount}</td>
+				<td width="45px" style="color:#007BA8">{$vo.commentCount}</td>
+				<td width="150px" style="color:#007BA8" align="right">{$vo.cTime|date='Y-m-d,H:i:s',###}</td>
+			</tr>
+
+			</table>
+		</div>
+		</volist>
+		</div>
+				<div align="right"></div>
+	</div>
+</div>
+
+<div id="middle_1"><div class="space_between"></div></div>
+
+<div id="right_1">
+	<div class="global_sub">推荐</div>
+	<div class="border_no_top">
+	  <div class="list_out" align="center">
+	  	 <html:ads align="center" style="" place="header" width="470" height="62"/>
+	  </div>
+	</div>
+	</div>
+</div>
+<div style="clear:both;"></div>
+
+</div>
+</div>
+</div>
+<include file="../../Public/footer" />

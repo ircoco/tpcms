@@ -1,0 +1,152 @@
+<tagLib name="html" />
+<include file="../Public/header" />
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+	function addRow(){   
+	curFileNum++;
+	rowsnum++;
+    var row=tbl.insertRow(-1);
+	//var td = arow.insertCell();
+	var cell = document.createElement("td");
+	cell.innerHTML='<div class="impBtn  fLeft" ><INPUT TYPE="file" id="file'+curFileNum+'" name="file'+ curFileNum +'" class="file  huge"></div><div class="fLeft hMargin"><IMG SRC="../Public/images/del.gif"  style="cursor:pointer" onfocus="javascript:getObject(this)" onclick="deleteRow();" WIDTH="20" HEIGHT="20" BORDER="0" ALT="删除" align="absmiddle"></div> ';
+	cell.align="center"
+	row.appendChild(cell); 
+	//addFileForm.num.value=rowsnum;
+}
+function deleteRow(){
+	if(tbl.rows.length>0){
+		tbl.deleteRow(rindex); //删除当前行
+		rowsnum--;    
+	}else{
+		return;
+	}
+	rindex="";
+}
+function getObject(obj){ 
+	rindex=obj.parentElement.parentElement.rowIndex;/*当前行对象*/
+}
+function selectCategory(){
+ var result= PopModalWindow('__APP__/Category/treeSelect/',268,360);
+ if(typeof(result) == "undefined") return;
+	$('categoryName').value=result[0][0];
+	$('categoryId').value=result[0][1];
+}
+function uploading(msg){
+	$('result').style.display = 'block';
+	$('result').innerHTML	=	'<IMG SRC="../Public/images/ajaxloading.gif" WIDTH="16" HEIGHT="16" BORDER="0" ALT="" align="absmiddle"> 文件上传中～';
+	return true;
+}
+function save(){
+	if ($('file1').value)
+	{
+		uploading();
+		$('upload').submit();
+	}
+	saveEditor();
+	ThinkAjax.sendForm('form1','__URL__/update/',doComplete,'result');
+
+}
+function uploadComplete(){
+	$('upload').reset();
+}
+function doComplete(data,status){
+
+}
+	function delAttachComplete(data,status){
+			if (status==1)
+			{
+			$('attach_'+data).style.display = 'none';
+			}
+	}
+//-->
+</SCRIPT>
+<div id="main" class="main" >
+<div class="content">
+<div class="title">编辑数据 [ <A HREF="__URL__">返回列表</A> ]</div>
+<TABLE cellpadding=3 cellspacing=3>
+<FORM METHOD=POST id="form1" >
+<TR><TD colspan="2"><div id="result" class="result none"></div></TD></TR>
+<TR>
+	<TD class="tRight" >标题：</TD>
+	<TD class="tLeft" ><INPUT TYPE="text" class="medium bLeftRequire"  check='Require' warning="标题不能为空" NAME="title" value="{$vo.title}"></TD>
+</TR>
+<TR>
+	<TD class="tRight">标题颜色：</TD>
+	<TD class="tLeft"><SELECT class="small bLeft"  NAME="titlecolor">
+	<option style="color:#007ba8;background-color: #007ba8;"  <eq name="vo.titlecolor" value="#007ba8" >selected</eq> value="#007ba8"><font color="#007ba8">&nbsp;</font></option>
+	<option style="color:Black;background-color: Black;"  <eq name="vo.titlecolor" value="Black" >selected</eq> value="Black"><font color="Black">&nbsp;</font></option>
+	<option style="color:Red;background-color: Red;" <eq name="vo.titlecolor" value="Red" >selected</eq> value="Red"><font color="Red">&nbsp;</font></option>
+	<option style="color:Blue;background-color: Blue;" <eq name="vo.titlecolor" value="Blue" >selected</eq> value="Blue"><font color="Blue">&nbsp;</font></option>
+	<option style="color:Green;background-color: Green;" <eq name="vo.titlecolor" value="Green" >selected</eq> value="Green"><font color="Green">&nbsp;</font></option>
+	<option style="color:Gray;background-color: Gray;" <eq name="vo.titlecolor" value="Gray" >selected</eq> value="Gray"><font color="Gray">&nbsp;</font></option>
+	</SELECT></TD>
+</TR>
+<TR>
+	<TD class="tRight" >Tags：</TD>
+	<TD class="tLeft" ><INPUT TYPE="text" class="medium bLeftRequire" NAME="tags" value="{$vo.tags}">（请用空格分隔）</TD>
+</TR>
+<TR>
+	<TD class="tRight">所属栏目：</TD>
+	<TD class="tLeft"><SELECT class="small bLeft"  NAME="menuId" style="width:150px">
+	<volist name="addMenu" id="voam">
+	  <option <php>if ($vo->menuId==$voam->id){</php> selected <php>}</php> value="{$voam.id}">{$voam.mcnname}</option>
+	</volist>
+	</SELECT></TD>
+</TR>
+<TR>
+	<TD class="tRight tTop">内容：</TD>
+	<TD class="tLeft"><html:editor id="Editor" name="aContent" type="FCKEDITOR" width="600px" content="{$vo.aContent}"/></TD>
+</TR>
+<TR>
+	<TD ></TD>
+	<TD class="center"><INPUT TYPE="hidden" name="id" value="{$vo.id}" >
+	<INPUT TYPE="hidden" name="ajax" value="1">
+	<INPUT TYPE="hidden" name="uid" value="{$vo.uid}">
+	<INPUT TYPE="button" value="保 存" onclick="save()" class="small submit">
+	<INPUT TYPE="reset" class="submit  small" value="清 空" >
+	</TD>
+</TR>
+</TABLE>
+</FORM>
+	<TABLE cellpadding=3 cellspacing=3 width="100%" style="font-size:14px">
+	<tr><td ></td><td>
+	<fieldset  style="float:left;width:75%">
+	<legend >附件列表</legend>	<div>
+	<volist name="attachs" id="attach" empty="还没有上传任何附件">
+	<div id="attach_{$attach:id}"><IMG SRC="../Public/images/file.gif" WIDTH="19" HEIGHT="20" BORDER="0" style="border:none" ALT="" align="absmiddle"> <A HREF="__URL__/download/id/{$attach.attid}">{$attach.name}</A> {$attach.size|byte_format} <IMG SRC="../Public/images/del.gif" WIDTH="20" HEIGHT="20" onclick="ThinkAjax.send('__URL__/delAttach/attid/{$attach.attid}','ajax=1',delAttachComplete,'result')" BORDER="0" ALT="删除附件"  style="cursor:hand" align="absmiddle"></div>
+	</volist>	
+	</div>
+	</fieldset>
+	</td></tr>
+<form id="upload" METHOD=POST action="__URL__/upload/" onsubmit="return CheckForm(this);" enctype="multipart/form-data" target="iframeUpload">
+<TR>
+	<TD class="tRight tTop">附件：</TD>
+	<TD class="tLeft tTop"><INPUT TYPE="hidden" name="ajax" value="1">
+	<iframe name="iframeUpload" src="" width="350" height="35" frameborder=0  SCROLLING="no" style="display:none"></iframe>
+	<INPUT TYPE="hidden" name="_uploadFileResult" value="result">
+	<INPUT TYPE="hidden" name="_uploadFormId" value="upload">
+	<INPUT TYPE="hidden" name="_uploadFileSize" value="-1">
+	<INPUT TYPE="hidden" name="_uploadResponse" value="uploadComplete">
+	<INPUT TYPE="hidden" name="_uploadRecordId" value="{$vo:id}">
+	<INPUT TYPE="hidden" name="_uploadFileType" value="jpeg,jpg,gif,png,doc,rar,zip,mp3,wav,flv,rm,asf">
+	<INPUT TYPE="hidden" name="_uploadSavePath" value="<?php echo APP_PATH.'/../'.'Public/Uploads/';?>" >
+	<INPUT TYPE="button" value="增 加" onclick="addRow();" class="submit small">
+	<TABLE id='tbl' style="clear:both"></TABLE>
+	</TD>
+</TR>
+</TABLE>
+</form>
+</div>
+</div>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+var curFileNum = 0;
+var rowsnum=0;  //记录行数
+var rindex="";       //列索引
+var tbl	=	$('tbl');
+addRow();
+//-->
+</SCRIPT>
+<!-- 主页面结束 -->
+{// 加载尾部公共文件 }
+<include file="../Public/footer" /> 

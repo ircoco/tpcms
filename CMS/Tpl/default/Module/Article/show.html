@@ -1,0 +1,151 @@
+<tagLib name="html" />
+<include file="../../Public/header" />
+<div align="center">
+<div id="top">
+	<table cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+		<td width="10px"><img src="__ROOT__/CMS/Tpl/default/Public/images/topnav_left.jpg" border="0"></td>
+		<td style="background:url(../Public/images/topnav_bg.jpg) repeat-x" align="left">
+			&#8251;&nbsp;
+			<a href="__APP__">{&SITE_TITLE}</a>
+			&raquo;
+			<a href="__APP__">网站首页{$Think.Config.test1}</a>
+						&raquo; <a href="{:url('index/Id/'.$aContent->menuId,'Module'.C('COMPONENT_DEPR').'Article')}">{$menuc.mcnname}</a>
+						&raquo; <a href="{:url('show/Id/'.$aContent->id,'Module'.C('COMPONENT_DEPR').'Article')}">文章显示</a>
+					</td>
+		<td width="10px"><img src="__ROOT__/CMS/Tpl/default/Public/images/topnav_right.jpg" border="0"></td>
+	</tr>
+	</table>
+</div>
+</div><div align="center">
+<div id="body">
+<div class="table">
+
+<div id="left_1">
+<include file="../../Public/left_login" />
+<include file="../../Public/left_article" />
+<div class="space_between"><div class="space_between"></div></div>
+<include file="../../Public/left_ads" />
+</div>
+
+<div id="middle_1"><div class="space_between"></div></div>
+
+<div id="right_1">
+	<div class="global_sub">内容：{$aContent.title}</div>
+	<div class="border_no_top">
+		<div class="msg_sub"><font color="{$aContent.titlecolor}">{$aContent.title}</font></div>
+		<div class="msg_date">最后修改：{$aContent.cTime|date='Y-m-d',###} &nbsp; 阅读：{$aContent.readCount} &nbsp; 评论：{$aContent.commentCount}<br />关键词: {$aContent.tags|showTags}</div>
+		<div class="msg_content">
+           <div>{$aContent.aContent}</div>
+        <div>
+        <present name="attachs">
+		<fieldset  style="width:98%;margin:8px;color:gray">
+		<legend >附件列表</legend>
+		<div>
+		<volist name="attachs" id="attach" empty="还没有上传任何附件">
+		
+	     <div id="attach_{$attach:attid}" style="padding:3px">
+	       <php>if ($attach->extension=='jpg' OR $attach->extension=='gif' OR $attach->extension=='bmp'){</php>
+           <IMG SRC="__ROOT__/Public/Uploads/{$attach.savename}" class="thumbImage"><br /><IMG SRC="__ROOT__/CMS/Tpl/default/Public/images/file.gif" WIDTH="19" HEIGHT="20" BORDER="0" style="border:none" ALT="" align="absmiddle"> <A HREF="__URL__/download/id/{$attach.attid}">{$attach.name}</A> {$attach.size|byte_format} [ 下载 {$attach.downCount}]<php>}else{</php>
+			<IMG SRC="__ROOT__/CMS/Tpl/default/Public/images/file.gif" WIDTH="19" HEIGHT="20" BORDER="0" style="border:none" ALT="" align="absmiddle"> <A HREF="__URL__/download/id/{$attach.attid}">{$attach.name}</A> {$attach.size|byte_format} [ 下载 {$attach.downCount}]
+			<php>}</php>
+	</div>
+	</volist>	
+	</div>
+	</fieldset>
+	</present>
+           </div>
+		<div style="clear:both;"></div>
+		</div>
+		<div align="right"></div>
+	</div>
+	<SCRIPT LANGUAGE="JavaScript">
+	<!--
+		function delComplete(data,status){
+			if (status==1)
+			{
+			$('comment_'+data).style.display = 'none';
+			}
+		}
+		function delComment(id){
+			ThinkAjax.send('__URL__/delComment','ajax=1&id='+id,delComplete,'delresult');
+		}
+		function doComplete(data,status){
+			if (status==1)
+			{
+			$('comments').innerHTML += '<div id="comment_'+data.id+'" class="commentbox" style="border:1px solid #56CD2E;"><div class="commentbox-content"> '+data.content+' </div></div>';
+			$('form1').reset();
+			fleshVerify();
+			}
+		}
+	//-->
+	</SCRIPT>
+	<!-- 评论 -->
+	<div class="border_no_top">
+	<div class="msg_content">
+	<div id="comments">
+	<div id="delresult" class="result none"></div>
+	<notpresent name="comments"><div class="no-comment-box">这篇日志还没有评论</div></notpresent>
+	<present name="comments">
+	<volist name="comments" id="comment" >
+	<div id="comment_{$comment:acid}">
+<A name="{$comment.acid}"></A> <div class="commentbox-title" > <A HREF="mailto:{$comment.email}">{$comment.author}</A> 发表的评论 <span style="color:gray">[ {$comment.cTime|date='Y-m-d,H:i:s',###} ]</span> </div>
+<eq name="userInfo.type" value="a"><A HREF="javascript:delComment({$comment.acid})">删除评论</A></div></eq>
+<div class="commentbox-content">{$comment.content|ubb|nl2br}</div>
+	</div></volist>
+	<div class="comment-pages">{$page}</div>
+	</present>
+	</div>
+	<div style="clear:both;"></div>
+	</div>
+	<div align="right"></div>
+
+	<!--发表评论 -->
+
+	<div class="msg_content">
+		<A name="reply"></A>
+          <div id="comment">
+	<div id="result" class="result none"></div>
+	<FORM METHOD=POST id="form1" >
+	<TABLE cellpadding=3 cellspacing=3 width="450px">
+	<nosession name="uid">
+	<TR>
+	<TD class="tRight tTop"></TD>
+	<TD class="tLeft">用户名：<INPUT TYPE="text" NAME="author" class="text"> 邮箱: <INPUT TYPE="text" NAME="email" class="text"></TD>
+	</TR>
+    </nosession>
+    <session name="uid">
+    <TR>
+	<TD class="tRight tTop"></TD>
+	<TD class="tLeft">用户名：<input type="text" name="author" value="{$userInfo.username}" disabled>&nbsp;&nbsp;&nbsp;邮箱:<input type="text" name="email" value="{$userInfo.email}" disabled></TD>
+	</TR>
+    </session>
+	<TR>
+	<TD class="tRight tTop"></TD>
+	<TD class="tLeft"><html:editor type="ubb"  id="editor" width="450px" height="185px" name="content"  /></TD>
+	</TR>
+	<TR>
+		<TD ></TD>
+		<TD class="center">
+		<INPUT TYPE="hidden" name="ajax" value="1">
+		<INPUT TYPE="hidden" NAME="module" value="article">
+		<INPUT TYPE="hidden" NAME="recordId" value="{$aContent.id}">
+		<div class="fLeft hMargin">输入验证码 [ <A HREF="javascript:fleshVerify()">看不清？</A> ] <img id="verifyImg" src="__URL__/verify" align="absmiddle"> <INPUT TYPE="text" NAME="verify" class="small text"></div>
+		<div class="fLeft hMargin"><INPUT TYPE="button" id="submit" value="发表评论" onclick="ThinkAjax.sendForm('form1','__URL__/comment/',doComplete,'result');" class="submit small"></div>
+		<div class="fLeft hMargin"><INPUT TYPE="reset" class="submit small" onclick="resetEditor()" value="重 置" ></div>
+		</TD>
+	</TR>
+	</TABLE>
+	</form>
+	</div>	
+	<div style="clear:both;"></div>
+	</div>
+	<div align="right"></div>
+	</div>
+</div>
+<div style="clear:both;"></div>
+
+</div>
+</div>
+</div>
+<include file="../../Public/footer" />

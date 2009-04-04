@@ -1,0 +1,62 @@
+<tagLib name="html" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<TITLE>系统登录</TITLE>
+<script language='JavaScript' src='../Public/Js/Common.js'></script> 
+<link rel='stylesheet' type='text/css' href='../Public/Css/style.css'>
+<html:import type="js" file="Js.prototype" /> 
+<html:import type="js" file="Js.Base" /> 
+<html:import type="js" file="Js.mootools" /> 
+<html:import type="js" file="Js.Ajax.ThinkAjax" /> 
+<html:import type="js" file="Js.Form.CheckForm" /> 
+ <SCRIPT LANGUAGE="JavaScript">
+<!--
+var PUBLIC	 =	 '__PUBLIC__';
+ThinkAjax.updateTip	=	'<IMG SRC="../Public/images/ajaxloading.gif" WIDTH="16" HEIGHT="16" BORDER="0" ALT="" align="absmiddle"> 登录中～';
+function loginHandle(data,status){
+if (status==1)
+{
+$('result').innerHTML	=	'<span style="color:blue"><IMG SRC="../Public/images/ok.gif" WIDTH="20" HEIGHT="20" BORDER="0" ALT="" align="absmiddle" > 登录成功！3 秒后跳转～</span>';
+$('form1').reset();
+window.location = '__URL__';
+}
+		
+}
+function keydown(e){
+	var e = e || event;
+	if (e.keyCode==13)
+	{ThinkAjax.sendForm('form1','__URL__/checkLogin/',loginHandle,'result');
+	}
+}
+function fleshVerify(){
+//重载验证码
+var timenow = new Date().getTime();
+$('verifyImg').src= '__URL__/verify/'+timenow;
+}
+//-->
+</SCRIPT>
+</HEAD>
+<BODY onload="document.login.username.focus()" >
+<FORM METHOD=POST name="login" id="form1" >
+<div class="tCenter hMargin">
+<TABLE id="checkList" class="login shadow" cellpadding=0 cellspacing=0 >
+<tr><td height="5" colspan="2" class="topTd" ></td></tr>
+<TR class="row" ><Th colspan="2" class="tCenter space" > ThinkCMS后台管理登录</th></TR>
+<tr><td height="5" colspan="2" class="topTd" ></td></tr>
+<TR class="row" ><TD colspan="2" class="tCenter"><div id="result" class="result none"></div></TD></TR>
+<TR class="row" ><TD class="tRight" width="25%">帐 号：</TD><TD><INPUT TYPE="text" class="medium bLeftRequire" check="Require" warning="请输入帐号" NAME="username"></TD></TR>
+<TR class="row" ><TD class="tRight">密 码：</TD><TD><INPUT TYPE="password" class="medium bLeftRequire" check="Require" warning="请输入密码" NAME="password"></TD></TR>
+<TR class="row" ><TD class="tRight">验证码：</TD><TD><INPUT TYPE="text" onkeydown="keydown(event)" class="small bLeftRequire" check="Require" warning="请输入验证码" NAME="verify"> <IMG id="verifyImg" SRC="__URL__/verify/" BORDER="0" ALT="" align="absmiddle"> <A HREF="javascript:fleshVerify()">刷新验证码</A>  </TD></TR>
+<TR class="row" ><TD class="tCenter" align="justify" colspan="2">
+<INPUT TYPE="hidden" name="ajax" value="1">
+<INPUT TYPE="reset" value="重 置" class="submit small">
+<INPUT TYPE="button" value="登 录" onclick="ThinkAjax.sendForm('form1','__URL__/checkLogin/',loginHandle,'result')" class="submit small hMargin">
+</td></tr>
+<tr><td height="5" colspan="2" class="bottomTd" ></td></tr>
+</TABLE>
+</div>
+</FORM>
+</BODY>
+</HTML>
